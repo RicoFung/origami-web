@@ -1,4 +1,6 @@
 package app.datasource;
+import java.sql.SQLException;
+
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -30,6 +32,8 @@ public class FirstDataSourceConfig
     private String password;
     @Value("${first.datasource.driver-class-name}")
     private String driverClass;
+    @Value("${first.datasource.filters}")
+    private String filters;
     @Value("${first.datasource.initialSize}")
     private int initialSize;
     @Value("${first.datasource.maxActive}")
@@ -45,13 +49,14 @@ public class FirstDataSourceConfig
  
     @Bean(name = "firstDataSource")
     @Primary
-    public DataSource firstDataSource() 
+    public DataSource firstDataSource() throws SQLException 
     {
         DruidXADataSource dataSource = new DruidXADataSource();
         dataSource.setDriverClassName(driverClass);
         dataSource.setUrl(url);
         dataSource.setUsername(user);
         dataSource.setPassword(password);
+        dataSource.setFilters(filters);
         dataSource.setInitialSize(initialSize);
         dataSource.setMaxActive(maxActive);
         dataSource.setMaxActive(maxActive);

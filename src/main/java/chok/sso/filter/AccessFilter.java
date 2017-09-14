@@ -29,7 +29,7 @@ import chok.util.http.HttpAction;
 import chok.util.http.HttpResult;
 import chok.util.http.HttpUtil;
 
-public class AuthFilter implements Filter 
+public class AccessFilter implements Filter 
 {
 	static Logger log = LoggerFactory.getLogger("sso.auth");
 	
